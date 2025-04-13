@@ -1,0 +1,24 @@
+
+.TopBar {
+    display: flex;
+    padding: 10px;
+    background-color: rgb(1, 1, 75);
+    color: white;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.FormBox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre los elementos */
+    justify-content: space-between;
+    box-shadow: rgba(13, 13, 182, 0.2) 0px 7px 29px 0px;
+
+}
+
+.FormArea {
+    flex: 1 1 45%; /* Cada campo ocupa aprox. 45% del ancho, se ajusta automáticamente */
+    padding: 15px;
+    min-width: 250px; /* Para que no se encoja demasiado en pantallas pequeñas */
+    box-sizing: border-box;
+}
