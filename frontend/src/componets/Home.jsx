@@ -1,16 +1,18 @@
 import { React, useEffect, useMemo, useState } from 'react';
 
 // Componentes de MUI (Material UI) para diseño e íconos
-import { Box, Chip, Typography } from '@mui/material';
+import { Box, Chip, Typography, IconButton } from '@mui/material';
 import CalendarViewMonthIcon from '@mui/icons-material/CalendarViewMonth';
-
+import { Link } from 'react-router';
 import { MaterialReactTable } from 'material-react-table';
-
+import EditIcon from '@mui/icons-material/Edit';
 import AxiosInstance from './Axios';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Home = () => {
 
   const [myData, setMyData] = useState([]);
+
 
   // Función que llama a Django para obtener los clubes de fútbol
   const GetData = () => {
@@ -54,7 +56,12 @@ const Home = () => {
       header: 'Características',
       Cell: ({ cell }) => {
         return (
-          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+          <div style={{
+            display: 'flex',
+            gap: '10px',
+            flexWrap: 'wrap'
+          }}
+          >
             {cell.getValue()?.map((char, index) => (
               <Chip key={index} label={char.name} />
             ))}
@@ -62,9 +69,8 @@ const Home = () => {
         );
       }
     }
-    
-    
-    
+
+
   ], []);
 
   return (
@@ -78,7 +84,20 @@ const Home = () => {
       <MaterialReactTable
         columns={columns}
         data={myData}
+        enableRowActions
+        renderRowActions={({ row }) => (
+          <Box sx={{ display: 'flex', flexWrap: 'nowrap', gap: '80px' }}>
+            <IconButton color="primary" component={Link} to={`/edit/${row.original.id}`}>
+              <EditIcon />
+            </IconButton>
+
+            <IconButton color="error" component={Link} to={`/delete/${row.original.id}`}>
+              <DeleteIcon />
+            </IconButton>
+          </Box>
+        )}
       />
+
     </>
   );
 };

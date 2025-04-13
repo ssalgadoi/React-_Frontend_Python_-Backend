@@ -30,7 +30,7 @@ const Create = () => {
     const [countries, setCountry] = useState([]);
     const [leagues, setLeague] = useState([]);
     const [characteristics, setCharacteristic] = useState([]);
-    const [message, setMessage] = useState(null);
+    const [message, setMessage] = useState();
 
     // Hook de navegación para redirigir tras guardar
     const navigate = useNavigate();
